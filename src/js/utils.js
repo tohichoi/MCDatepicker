@@ -66,7 +66,9 @@ export const Animation = () => {
 };
 
 export const createNewDate = (year, month, day) => {
-	const date = new Date();
+	// Start from the epoch (day 1) so setMonth() never rolls into the next
+	// month when today's day-of-month (29–31) exceeds the target month length.
+	const date = new Date(0);
 	date.setHours(0, 0, 0, 0);
 	Is(year).number() && date.setFullYear(year);
 	Is(month).number() && date.setMonth(month);
